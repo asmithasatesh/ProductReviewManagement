@@ -108,10 +108,10 @@ namespace ProductReviewManagement
         {
             AddingProductReview();
             productdt = new DataTable();
-            productdt.Columns.Add("productId");
-            productdt.Columns.Add("userId");
-            productdt.Columns.Add("rating");
-            productdt.Columns.Add("review");
+            productdt.Columns.Add("productId",typeof(Int32));
+            productdt.Columns.Add("userId", typeof(Int32));
+            productdt.Columns.Add("rating",typeof(Int32));
+            productdt.Columns.Add("review", typeof(string));
             productdt.Columns.Add("isLike", typeof(bool));
 
             foreach (var data in products)
@@ -121,6 +121,7 @@ namespace ProductReviewManagement
 
             return productdt.Rows.Count;
         }
+        // UsecCase 9: Retrieve the records whose column islike has true using DataTable
         public string ReturnsOnlyIsLikeFieldAsTrue()
         {
             List<ProductReview> products = new List<ProductReview>();
@@ -133,6 +134,19 @@ namespace ProductReviewManagement
                 nameList += p["userId"] + " ";
             }
             return nameList;
+        }
+        //Usecase 10: Average of rating based on ProductId
+        public string AverageofRatingBasedonProductId()
+        {
+            string result = "";
+            CreateDataTable();
+            var res = from product in productdt.AsEnumerable() group product by product.Field<int>("productId") into temp select new { productid = temp.Key, Average = Math.Round(temp.Average(x => x.Field<int>("rating")), 1) }; 
+            foreach (var r in res)
+            {
+                Console.WriteLine("Product id: {0} Average Rating: {1}",r.productid,r.Average);
+                result += r.Average + " ";
+            }
+            return result;
         }
         //Display List Content
         public void DisplayList()

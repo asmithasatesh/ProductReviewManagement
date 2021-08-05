@@ -80,13 +80,22 @@ namespace ProductReviewManagementTesting
             Assert.AreEqual(expected, actual);
         }
 
-        /// UsecCase 9: Retrieve the records whose column islike has true using DataTable
+        // UsecCase 9: Retrieve the records whose column islike has true using DataTable
         [TestMethod]
         [TestCategory("Using LINQ in DataTable")]
         public void TestMethodForReturnsOnlyIsLikeFieldAsTrue()
         {
             string expected = "1 3 1 6 7 8 4 9 5 9 3 15 1 6 7 8 4 ";
             string actual = productManager.ReturnsOnlyIsLikeFieldAsTrue();
+            Assert.AreEqual(expected, actual);
+        }
+        //Usecase 10: Average of rating based on ProductId
+        [TestMethod]
+        [TestCategory("Using LINQ in DataTable")]
+        public void TestMethodForReturns_AverageofRating()
+        {
+            string expected = "3.3 3.2 2 5 2 1 3 1 ";
+            string actual = productManager.AverageofRatingBasedonProductId();
             Assert.AreEqual(expected, actual);
         }
     }
