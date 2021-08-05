@@ -48,5 +48,13 @@ namespace ProductReviewManagementTesting
             string actual = productManager.CountingProductId();
             Assert.AreEqual(expected, actual);
         }
+        /// Usecase 5: Retrieving the product id and Rating from list
+        [TestMethod]
+        public void TestMethodForProductId()
+        {
+            string expected = "2 2 3 2 1 2 4 5 3 5 7 9 4 3 8 2 9 1 1 1 2 4 5 3 5 ";
+            string actual = productManager.RetrieveOnlyProductIdAndReviews();
+            Assert.AreEqual(expected, actual);
+        }
     }
 }

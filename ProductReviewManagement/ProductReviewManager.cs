@@ -76,6 +76,21 @@ namespace ProductReviewManagement
             return nameList;
         }
 
+        /// Usecase 5: Retrieving the product id and Rating from list
+
+        public string RetrieveOnlyProductIdAndReviews()
+        {
+            string result = "";
+            AddingProductReview();
+            var productList = products.Select(product => new { ProductId = product.productId, Review = product.review }).ToList();
+            foreach (var element in productList)
+            {
+                Console.WriteLine("ProductId: " + element.ProductId + "\tReview: " + element.Review);
+                result += element.ProductId + " ";
+            }
+            return result;
+        }
+
         //Display List Content
         public void DisplayList()
         {
