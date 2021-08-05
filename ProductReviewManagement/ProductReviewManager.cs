@@ -14,7 +14,7 @@ namespace ProductReviewManagement
             products.Add(new ProductReview() { productId = 2, userId = 1, review = "Bad", rating = 2, isLike = true });
             products.Add(new ProductReview() { productId = 2, userId = 2, review = "Average", rating = 5, isLike = false});
             products.Add(new ProductReview() { productId = 3, userId = 3, review = "Nice", rating = 2, isLike = true });
-            products.Add(new ProductReview() { productId = 2, userId = 5, review = "Bad", rating = 7, isLike = false });
+            products.Add(new ProductReview() { productId = 2, userId = 5, review = "Bad", rating = 5, isLike = false });
             products.Add(new ProductReview() { productId = 1, userId = 1, review = "Nice", rating = 1, isLike = true });
             products.Add(new ProductReview() { productId = 2, userId = 6, review = "Average", rating = 1, isLike = true });
             products.Add(new ProductReview() { productId = 4, userId = 7, review = "Good", rating = 5, isLike = true });
@@ -48,6 +48,20 @@ namespace ProductReviewManagement
             var res = (from product in products orderby product.rating descending select product).Take(3).ToList();
             DisplayList();
             return res.Count;
+        }
+        // Usecase 3: Retrieve  records from list based on productid and rating > 3  
+        public string RetrieveRecordsBasedOnRatingAndProductId()
+        {
+            AddingProductReview();
+            string nameList = "";
+            Console.WriteLine("\n-----------Retrieve Records Based On Rating and Product Id-----------");
+            var productList = (from product in products where product.rating > 3 && (product.productId == 1 || product.productId == 4 || product.productId == 9) select product);
+            foreach(var product in productList)
+            {
+                nameList += product.userId + " ";
+                Console.WriteLine("ProductId: {0} || UserId: {1} || Review: {2} || Rating: {3} || IsLike:{4}\n", product.productId, product.userId, product.review, product.rating, product.isLike);
+            }
+            return nameList;
         }
 
         //Display List Content

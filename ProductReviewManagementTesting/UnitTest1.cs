@@ -31,5 +31,14 @@ namespace ProductReviewManagementTesting
             var actual = productManager.RetrieveTopThreeRating();
             Assert.AreEqual(expected, actual);
         }
+
+        //Usecase 3: Retrieve records from list based on productid and rating > 3 
+        [TestMethod]
+        public void TestMethodForRetrieveRecordsBasedOnRatingAndProductId()
+        {
+            string expected = "7 3 3 15 7 ";
+            string actual = productManager.RetrieveRecordsBasedOnRatingAndProductId();
+            Assert.AreEqual(expected, actual);
+        }
     }
 }
