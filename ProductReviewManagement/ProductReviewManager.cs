@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
+using System.Data;
 
 namespace ProductReviewManagement
 {
@@ -100,6 +101,24 @@ namespace ProductReviewManagement
                 nameList += element.productId + " ";
             }
             return nameList;
+        }
+        //Usecase 8: Adding a Productreview details in Data Table
+        public int CreateDataTable()
+        {
+            AddingProductReview();
+            DataTable productdt = new DataTable();
+            productdt.Columns.Add("productId");
+            productdt.Columns.Add("userId");
+            productdt.Columns.Add("rating");
+            productdt.Columns.Add("review");
+            productdt.Columns.Add("isLike", typeof(bool));
+
+            foreach (var data in products)
+            {
+                productdt.Rows.Add(data.productId, data.userId, data.rating, data.review, data.isLike);
+            }
+            //IterateTable(dt);
+            return productdt.Rows.Count;
         }
         //Display List Content
         public void DisplayList()

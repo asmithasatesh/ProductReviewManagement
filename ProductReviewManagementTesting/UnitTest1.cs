@@ -64,5 +64,13 @@ namespace ProductReviewManagementTesting
             string actual = productManager.SkipTop5Record();
             Assert.AreEqual(expected, actual);
         }
+        //Usecase 8: Adding a Productreview details in Data Table
+        [TestMethod]
+        public void GivenCreateFunctionforDT_returnCountofListCreated()
+        {
+            int expected = 25;
+            int actual = productManager.CreateDataTable();
+            Assert.AreEqual(expected, actual);
+        }
     }
 }
