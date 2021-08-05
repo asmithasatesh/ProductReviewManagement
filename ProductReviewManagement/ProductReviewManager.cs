@@ -89,7 +89,18 @@ namespace ProductReviewManagement
             }
             return result;
         }
-
+        //Usecase 6: Skip top Five records
+        public string SkipTop5Record()
+        {
+            AddingProductReview();
+            string nameList = "";
+            var result = (from product in products orderby product.rating descending select product).Skip(5).ToList();
+            foreach(var element in result)
+            {
+                nameList += element.productId + " ";
+            }
+            return nameList;
+        }
         //Display List Content
         public void DisplayList()
         {
