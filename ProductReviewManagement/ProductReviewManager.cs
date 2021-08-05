@@ -6,8 +6,9 @@ namespace ProductReviewManagement
 {
     public class ProductReviewManager
     {
+        public static List<ProductReview> products = new List<ProductReview>();
         //Usecase 1: Adding a Productreview details
-        public static int AddingProductReview(List<ProductReview> products)
+        public static int AddingProductReview()
         {
             products.Add(new ProductReview() { productId = 2, userId = 1, review = "Bad", rating = 2, isLike = true });
             products.Add(new ProductReview() { productId = 2, userId = 2, review = "Average", rating = 5, isLike = false});
@@ -38,9 +39,9 @@ namespace ProductReviewManagement
             return products.Count;
         }
 
-
-        public static void DisplayList(List<ProductReview> products)
+        public static void DisplayList()
         {
+            Console.WriteLine("\n-------- Displaying List Content --------\n");
             foreach (ProductReview product in products)
             {
                 Console.WriteLine("ProductId: {0} || UserId: {1} || Review: {2} || Rating: {3} || IsLike:{4}\n", product.productId, product.userId, product.review, product.rating, product.isLike);

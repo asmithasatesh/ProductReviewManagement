@@ -7,6 +7,8 @@ namespace ProductReviewManagement
         static void Main(string[] args)
         {
             Console.WriteLine("Welcome to Product Review Management!");
+            ProductReviewManager.AddingProductReview();
+            ProductReviewManager.DisplayList();
         }
     }
 }
