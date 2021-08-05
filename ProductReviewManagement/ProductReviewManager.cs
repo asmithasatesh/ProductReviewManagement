@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 
 namespace ProductReviewManagement
 {
     public class ProductReviewManager
     {
-        public static List<ProductReview> products = new List<ProductReview>();
+        public List<ProductReview> products = new List<ProductReview>();
         //Usecase 1: Adding a Productreview details
-        public static int AddingProductReview()
+        public int AddingProductReview()
         {
             products.Add(new ProductReview() { productId = 2, userId = 1, review = "Bad", rating = 2, isLike = true });
             products.Add(new ProductReview() { productId = 2, userId = 2, review = "Average", rating = 5, isLike = false});
@@ -39,7 +40,18 @@ namespace ProductReviewManagement
             return products.Count;
         }
 
-        public static void DisplayList()
+        // UseCase 2: Retrieve Top Three Records Whose Rating is High
+        public int RetrieveTopThreeRating()
+        {
+            AddingProductReview();
+            Console.WriteLine("\n-------- Retrieve Top Three Records Whose Rating is High --------");
+            var res = (from product in products orderby product.rating descending select product).Take(3).ToList();
+            DisplayList();
+            return res.Count;
+        }
+
+        //Display List Content
+        public void DisplayList()
         {
             Console.WriteLine("\n-------- Displaying List Content --------\n");
             foreach (ProductReview product in products)
