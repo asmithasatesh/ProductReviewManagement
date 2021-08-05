@@ -76,8 +76,7 @@ namespace ProductReviewManagement
             return nameList;
         }
 
-        /// Usecase 5: Retrieving the product id and Rating from list
-
+        // Usecase 5: Retrieving the product id and Review from list
         public string RetrieveOnlyProductIdAndReviews()
         {
             string result = "";
