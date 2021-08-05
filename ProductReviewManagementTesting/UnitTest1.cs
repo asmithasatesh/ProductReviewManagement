@@ -98,5 +98,14 @@ namespace ProductReviewManagementTesting
             string actual = productManager.AverageofRatingBasedonProductId();
             Assert.AreEqual(expected, actual);
         }
+        //Usecase 11: Retrieve records where review is Nice
+        [TestMethod]
+        [TestCategory("Using LINQ in DataTable")]
+        public void TestMethodForReviewReturnsString()
+        {
+            string expected = "2 3 15 9 ";
+            string actual = productManager.ReturnsReviewMessageContainsNice();
+            Assert.AreEqual(expected, actual);
+        }
     }
 }

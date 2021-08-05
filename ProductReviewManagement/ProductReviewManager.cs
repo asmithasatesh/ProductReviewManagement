@@ -148,6 +148,21 @@ namespace ProductReviewManagement
             }
             return result;
         }
+        //Usecase 11: Retrieve records where review is Nice
+        public string ReturnsReviewMessageContainsNice()
+        {
+            CreateDataTable();
+            List<ProductReview> products = new List<ProductReview>();
+
+            string nameList = "";
+            var res = from product in productdt.AsEnumerable() where product.Field<string>("review") == "Nice" select product;
+            foreach (var p in res)
+            {
+                Console.WriteLine("{0} | {1} | {2} | {3} | {4} ", p["productId"], p["userId"], p["rating"], p["review"], p["isLike"]);
+                nameList += p["userId"] + " ";
+            }
+            return nameList;
+        }
         //Display List Content
         public void DisplayList()
         {
