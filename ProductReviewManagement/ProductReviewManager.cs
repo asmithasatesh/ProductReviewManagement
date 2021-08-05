@@ -9,6 +9,7 @@ namespace ProductReviewManagement
     public class ProductReviewManager
     {
         public List<ProductReview> products = new List<ProductReview>();
+        DataTable productdt;
         //Usecase 1: Adding a Productreview details
         public int AddingProductReview()
         {
@@ -106,7 +107,7 @@ namespace ProductReviewManagement
         public int CreateDataTable()
         {
             AddingProductReview();
-            DataTable productdt = new DataTable();
+            productdt = new DataTable();
             productdt.Columns.Add("productId");
             productdt.Columns.Add("userId");
             productdt.Columns.Add("rating");
@@ -117,8 +118,21 @@ namespace ProductReviewManagement
             {
                 productdt.Rows.Add(data.productId, data.userId, data.rating, data.review, data.isLike);
             }
-            //IterateTable(dt);
+
             return productdt.Rows.Count;
+        }
+        public string ReturnsOnlyIsLikeFieldAsTrue()
+        {
+            List<ProductReview> products = new List<ProductReview>();
+            CreateDataTable();
+            string nameList = "";
+            var res = from product in productdt.AsEnumerable() where product.Field<bool>("isLike") == true select product;
+            foreach (var p in res)
+            {
+                Console.WriteLine("{0} | {1} | {2} | {3} | {4} ", p["productId"], p["userId"], p["rating"], p["review"], p["isLike"]);
+                nameList += p["userId"] + " ";
+            }
+            return nameList;
         }
         //Display List Content
         public void DisplayList()
