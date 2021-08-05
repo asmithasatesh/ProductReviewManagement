@@ -107,5 +107,14 @@ namespace ProductReviewManagementTesting
             string actual = productManager.ReturnsReviewMessageContainsNice();
             Assert.AreEqual(expected, actual);
         }
+        //Usecase 12: Retrieve Record based on rating where userid=10 
+        [TestMethod]
+        [TestCategory("Using LINQ in DataTable")]
+        public void TestMethodForReview_UserIdisTen_ReturnsString()
+        {
+            string expected = "2 2 2 2 3 ";
+            string actual = productManager.RetrieveRecordsBasedOnRating();
+            Assert.AreEqual(expected, actual);
+        }
     }
 }

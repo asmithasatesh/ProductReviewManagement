@@ -15,7 +15,7 @@ namespace ProductReviewManagement
         {
             products.Add(new ProductReview() { productId = 2, userId = 1, review = "Average", rating = 2, isLike = true });
             products.Add(new ProductReview() { productId = 2, userId = 2, review = "Good", rating = 5, isLike = false});
-            products.Add(new ProductReview() { productId = 3, userId = 3, review = "Average", rating = 2, isLike = true });
+            products.Add(new ProductReview() { productId = 3, userId = 10, review = "Average", rating = 2, isLike = true });
             products.Add(new ProductReview() { productId = 2, userId = 5, review = "Good", rating = 5, isLike = false });
             products.Add(new ProductReview() { productId = 1, userId = 1, review = "Bad", rating = 1, isLike = true });
             products.Add(new ProductReview() { productId = 2, userId = 6, review = "Bad", rating = 1, isLike = true });
@@ -24,20 +24,20 @@ namespace ProductReviewManagement
             products.Add(new ProductReview() { productId = 3, userId = 9, review = "Average", rating = 3, isLike = false });
             products.Add(new ProductReview() { productId = 5, userId = 4, review = "Average", rating = 3, isLike = true });
             products.Add(new ProductReview() { productId = 7, userId = 9, review = "Bad", rating = 1, isLike = true });
-            products.Add(new ProductReview() { productId = 9, userId = 5, review = "Average", rating = 2, isLike = true });
+            products.Add(new ProductReview() { productId = 9, userId = 10, review = "Average", rating = 2, isLike = true });
             products.Add(new ProductReview() { productId = 4, userId = 3, review = "Good", rating = 5, isLike = false });
             products.Add(new ProductReview() { productId = 3, userId = 2, review = "Nice", rating = 4, isLike = false });
             products.Add(new ProductReview() { productId = 8, userId = 9, review = "Bad", rating = 1, isLike = true });
             products.Add(new ProductReview() { productId = 2, userId = 3, review = "Good", rating = 5, isLike = true });
             products.Add(new ProductReview() { productId = 9, userId = 3, review = "Nice", rating = 4, isLike = false });
             products.Add(new ProductReview() { productId = 1, userId = 15, review = "Nice", rating = 4, isLike = true });
-            products.Add(new ProductReview() { productId = 1, userId = 9, review = "Average", rating = 2, isLike = false });
+            products.Add(new ProductReview() { productId = 1, userId = 10, review = "Average", rating = 2, isLike = false });
             products.Add(new ProductReview() { productId = 1, userId = 1, review = "Bad", rating = 1, isLike = true });
-            products.Add(new ProductReview() { productId = 2, userId = 6, review = "Average", rating = 2, isLike = true });
+            products.Add(new ProductReview() { productId = 2, userId = 10, review = "Average", rating = 2, isLike = true });
             products.Add(new ProductReview() { productId = 4, userId = 7, review = "Good", rating = 5, isLike = true });
             products.Add(new ProductReview() { productId = 5, userId = 8, review = "Bad", rating = 1, isLike = true });
             products.Add(new ProductReview() { productId = 3, userId = 9, review = "Nice", rating = 4, isLike = false });
-            products.Add(new ProductReview() { productId = 5, userId = 4, review = "Average", rating = 3, isLike = true });
+            products.Add(new ProductReview() { productId = 5, userId = 10, review = "Average", rating = 3, isLike = true });
 
             return products.Count;
         }
@@ -160,6 +160,20 @@ namespace ProductReviewManagement
             {
                 Console.WriteLine("{0} | {1} | {2} | {3} | {4} ", p["productId"], p["userId"], p["rating"], p["review"], p["isLike"]);
                 nameList += p["userId"] + " ";
+            }
+            return nameList;
+        }
+        //Usecase 12: Retrieve Record based on rating where userid=10 
+        public string RetrieveRecordsBasedOnRating()
+        {
+            CreateDataTable();
+            string nameList = "";
+            Console.WriteLine("\n-------- Retrieve Record based on rating where userid=10 --------");
+            var res = (from product in productdt.AsEnumerable() where product.Field<Int32>("userId") == 10  orderby product.Field<int>("rating")  select product).ToList();
+            foreach(var p in res)
+            {
+                Console.WriteLine("{0} | {1} | {2} | {3} | {4} ", p["productId"], p["userId"], p["rating"], p["review"], p["isLike"]);
+                nameList += p["rating"] + " ";
             }
             return nameList;
         }
